@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 
 export default function Home() {
   const [inviteData, setInviteData] = useState({})
@@ -9,10 +9,17 @@ export default function Home() {
   function handleGetInviteData(event: FormEvent) {
     event.preventDefault()
     axios.get(`/api/${inviteLink}`).then((response) => {
-      setInviteData(response.data)
-      console.log(response.data)
+      const data = response.data
+      setInviteData(data)
+      console.log(data)
     })
   }
+
+  useEffect(() => {
+    if (inviteData) {
+      setShowCard(true)
+    }
+  }, [inviteData])
 
   return (
     <div className="flex flex-col items-center h-screen">
@@ -36,8 +43,9 @@ export default function Home() {
             }}
             placeholder="https://discord.gg/Xe9UJtdP"
             id="invite-link"
-            className="text-3xl bg-[#202225] rounded-md p-3 max-w-xl w-full border-none outline-none focus:outline-2 focus:outline-[#7984fa]"
+            className="transition-all text-3xl bg-[#202225] rounded-md p-3 max-w-xl w-full border-none outline-none focus:outline-2 focus:outline-[#7984fa]"
             type="text"
+            required
           />
         </div>
         <button

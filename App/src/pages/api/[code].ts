@@ -9,8 +9,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       res.status(200).json({ name: invite })
     })
     .catch((error) => {
-      error.code
-        ? res.status(200).json({ error: 'Convite desconhecido' })
-        : res.status(200).json({ error: 'Erro desconhecido' })
+      error.code === 10006
+        ? res
+            .status(200)
+            .json({ successful: false, error: 'Convite desconhecido' })
+        : res
+            .status(200)
+            .json({ successful: false, error: 'Erro desconhecido' })
     })
 }

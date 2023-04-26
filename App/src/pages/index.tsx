@@ -71,8 +71,8 @@ export default function Home() {
       </form>
       <div>
         {showCard ? (
-          <div className="flex flex-col gap-8">
-            <div className="bg-[#2b2d31] mt-16 flex gap-8 rounded-md p-6 relative">
+          <div className="flex flex-col items-center gap-8">
+            <div className="bg-[#2b2d31] mt-16 flex gap-8 rounded-md p-6 relative items-center">
               <div className="relative">
                 <img
                   className="rounded-md"
@@ -81,7 +81,7 @@ export default function Home() {
                   alt=""
                 />
                 <FileArrowDown
-                  className="absolute z-10 bottom-[-10px] -right-4 opacity-40 hover:opacity-100 transition-opacity cursor-pointer"
+                  className="absolute z-10 bottom-[-10px] -right-4 opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
                   size={32}
                   color="#ffffff"
                   weight="fill"
@@ -89,8 +89,11 @@ export default function Home() {
                 />
               </div>
               <div className="flex flex-col items-center gap-4">
-                <span className="font-bold text-2xl">
+                <span className="font-bold text-2xl flex flex-col items-center">
                   {inviteData.guild.name}
+                  <span className="font-normal text-base italic opacity-80 max-w-xs text-center">
+                    {inviteData.guild.description}
+                  </span>
                 </span>
                 <div className="flex flex-col gap-1">
                   <span className="font-bold">
